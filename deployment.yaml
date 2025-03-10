@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oral-frontend-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: oral-frontend
+  template:
+    metadata:
+      labels:
+        app: oral-frontend
+    spec:
+      containers:
+      - name: oral-frontend
+        image: chcorpuatcn03ohccontreg01.azurecr.cn/oral-frontend:{{ GITHUB_SHA }}
+        ports:
+        - containerPort: 80
+        - containerPort: 443
+        imagePullPolicy: Always
